@@ -1,0 +1,18 @@
+// File name: projects/01/Mux.hdl
+
+/** 
+ * Multiplexor:
+ * out = a if sel == 0
+ *       b otherwise
+ */
+
+CHIP Mux {
+    IN a, b, sel;
+    OUT out;
+
+    PARTS:
+    Not(in=sel,out=notsel);
+    And(a=a,b=notsel,out=lhs);
+    And(a=sel,b=b,out=rhs);
+    Or(a=lhs,b=rhs,out=out);
+}
